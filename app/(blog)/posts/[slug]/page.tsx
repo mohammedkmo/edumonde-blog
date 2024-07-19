@@ -75,40 +75,40 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <div className="mx-auto">
+    <>
       <div className=" fixed z-50 bg-white/40 backdrop-blur-lg w-screen py-3">
-        <div className="container flex items-center justify-between">
+        <div className="container flex items-center justify-end gap-x-4">
+        <h1 className="font-bold text-2xl">Blog</h1>
+         
+          |
           <Link href="/">
             <Image src={logo} width={86} height={86} alt="logo" />
           </Link>
-          <h1 className="font-bold text-2xl">
-            .Blog
-          </h1>
         </div>
       </div>
 
-      <article className="container pt-24">
-        <h1 className="text-balance mb-12 text-6xl font-bold leading-tight tracking-tighter md:text-7xl md:leading-none lg:text-8xl">
-          {post.title}
-        </h1>
-        <div className="hidden md:mb-12 md:block">
-          {post.author && (
-            <Avatar name={post.author.name} picture={post.author.picture} />
-          )}
+      <article className="container pt-28">
+        <div className="flex flex-col items-start justify-start">
+          <h1 className="mb-12 text-2xl font-bold md:text-4xl lg:text-6xl">
+            {post.title}
+          </h1>
+          <div className="mb-12 hidden md:block">
+            {post.author && (
+              <Avatar name={post.author.name} picture={post.author.picture} />
+            )}
+          </div>
         </div>
         <div className="mb-8 sm:mx-0 md:mb-16">
           <CoverImage image={post.coverImage} priority />
         </div>
-        <div className="mx-auto max-w-2xl">
+        <div className=" mx-auto flex flex-col items-start justify-start max-w-2xl">
           <div className="mb-6 block md:hidden">
             {post.author && (
               <Avatar name={post.author.name} picture={post.author.picture} />
             )}
           </div>
-          <div className="mb-6 text-lg">
-            <div className="mb-4 text-lg">
-              <DateComponent dateString={post.date} />
-            </div>
+          <div className="mb-4 text-md font-bold">
+            <DateComponent dateString={post.date} />
           </div>
         </div>
         {post.content?.length && (
@@ -120,13 +120,13 @@ export default async function PostPage({ params }: Props) {
       </article>
       <aside className="container">
         <hr className="border-accent-2 mb-24 mt-28" />
-        <h2 className="mb-8 text-6xl font-bold leading-tight tracking-tighter md:text-7xl">
+        <h2 className="mb-8 text-2xl font-bold leading-tight tracking-tighter md:text-4xl">
           اخر المقالات
         </h2>
         <Suspense>
           <MoreStories skip={post._id} limit={2} />
         </Suspense>
       </aside>
-    </div>
+    </>
   );
 }
