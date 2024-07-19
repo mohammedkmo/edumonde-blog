@@ -9,6 +9,18 @@ export default {
         sans: ["var(--font-inter)"],
       },
     },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1rem",
+        sm: "2rem",
+        lg: "4rem",
+        xl: "5rem",
+      },
+      screens: {
+        xl: "1000px",
+      },
+    },
   },
   future: {
     hoverOnlyWhenSupported: true,

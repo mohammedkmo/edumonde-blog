@@ -11,7 +11,7 @@ export default function CoverImage(props: CoverImageProps) {
   const { image: source, priority } = props;
   const image = source?.asset?._ref ? (
     <Image
-      className="h-auto w-full"
+      className="h-auto w-full rounded-xl"
       width={2000}
       height={1000}
       alt={source?.alt || ""}

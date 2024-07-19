@@ -9,6 +9,8 @@ import CoverImage from "../../cover-image";
 import DateComponent from "../../date";
 import MoreStories from "../../more-stories";
 import PortableText from "../../portable-text";
+import logo from "../../../assets/logo.svg";
+import Image from "next/image";
 
 import type {
   PostQueryResult,
@@ -37,7 +39,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(
   { params }: Props,
-  parent: ResolvingMetadata,
+  parent: ResolvingMetadata
 ): Promise<Metadata> {
   const post = await sanityFetch<PostQueryResult>({
     query: postQuery,
@@ -73,13 +75,19 @@ export default async function PostPage({ params }: Props) {
   }
 
   return (
-    <div className="container mx-auto px-5">
-      <h2 className="mb-16 mt-10 text-2xl font-bold leading-tight tracking-tight md:text-4xl md:tracking-tighter">
-        <Link href="/" className="hover:underline">
-          {settings?.title || demo.title}
-        </Link>
-      </h2>
-      <article>
+    <div className="mx-auto">
+      <div className=" fixed z-50 bg-white/40 backdrop-blur-lg w-screen py-3">
+        <div className="container flex items-center justify-between">
+          <Link href="/">
+            <Image src={logo} width={86} height={86} alt="logo" />
+          </Link>
+          <h1 className="font-bold text-2xl">
+            .Blog
+          </h1>
+        </div>
+      </div>
+
+      <article className="container pt-24">
         <h1 className="text-balance mb-12 text-6xl font-bold leading-tight tracking-tighter md:text-7xl md:leading-none lg:text-8xl">
           {post.title}
         </h1>
@@ -110,10 +118,10 @@ export default async function PostPage({ params }: Props) {
           />
         )}
       </article>
-      <aside>
+      <aside className="container">
         <hr className="border-accent-2 mb-24 mt-28" />
         <h2 className="mb-8 text-6xl font-bold leading-tight tracking-tighter md:text-7xl">
-          Recent Stories
+          اخر المقالات
         </h2>
         <Suspense>
           <MoreStories skip={post._id} limit={2} />
